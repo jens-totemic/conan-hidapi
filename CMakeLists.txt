@@ -27,6 +27,12 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     message("Building for OSX")
     set(library_SOURCES sources/mac/hid.c)
+    if(HIDAPI_BUILD_SHARED)
+        set(lib_link_libraries 
+            "-framework CoreFoundation"
+            "-framework IOKit")
+    endif()
+
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     message("Building for Windows")
     set(library_SOURCES sources/windows/hid.c)

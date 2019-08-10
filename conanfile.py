@@ -99,25 +99,8 @@ class LibUSBConan(ConanFile):
     # def _build_autotools(self, configure_args=None):
     #     autotools = AutoToolsBuildEnvironment(self, win_bash=tools.os_info.is_windows)
     #     autotools.fpic = self.options.fPIC
-
-
-    #     self.output.info("deps_cpp_info.lib_paths: %s" % self.deps_cpp_info.lib_paths)
-    #     self.output.info("autotools.library_paths: %s" % autotools.library_paths)
-    #     self.output.info("deps_env_info.lib_paths: %s" % self.deps_env_info.lib_paths)
-    #     #vars = autotools.vars
-    #     #vars["DYLD_LIBRARY_PATH"] = autotools.library_paths
-    #     self.output.info("autotools.vars: %s" % autotools.vars)
-
     #     with tools.chdir(self._source_subfolder):
     #         autotools.configure(args=configure_args)
-
-    #         # env_build_vars = autotools.vars
-    #         # # The include paths for dependencies are added to the CPPFLAGS
-    #         # # which are not used by pjsip's makefiles. Instead, add them to CFLAGS
-    #         # cflags = env_build_vars['CFLAGS'] + " " + env_build_vars['CPPFLAGS']
-    #         # env_build_vars['CFLAGS'] = cflags
-    #         # self.output.info("env_build_vars: %s" % env_build_vars)
-
     #         autotools.make()
     #         autotools.make(args=["install"])
 
