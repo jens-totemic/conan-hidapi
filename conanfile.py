@@ -15,8 +15,8 @@ class LibUSBConan(ConanFile):
     version = "0.9.0"
     settings = "os", "compiler", "build_type", "arch"
     topics = ("conan", "libusb", "usb", "device")
-    options = {"shared": [True, False], "hidraw": [True, False], "fPIC": [True, False]}
-    default_options = {'shared': False, 'hidraw': False, 'fPIC': True}
+    options = {"shared": [True, False], "libusb": [True, False], "fPIC": [True, False]}
+    default_options = {'shared': False, 'libusb': False, 'fPIC': True}
     homepage = "https://github.com/libusb/hidapi"
     url = "http://github.com/jens-totemic/conan-hidapi"
     license = "LGPL-2.1"
@@ -28,7 +28,7 @@ class LibUSBConan(ConanFile):
 
     def config_options(self):
         if self.settings.os != "Linux":
-            del self.options.hidraw
+            del self.options.libusb
         if self.settings.os == "Windows" and self.settings.compiler == "Visual Studio":
             del self.options.fPIC
 
@@ -44,16 +44,16 @@ class LibUSBConan(ConanFile):
 
     def requirements(self):
         if self.settings.os == "Linux":
-            if self.options.hidraw:
-                self.requires("libudev1/237@totemic/stable")
-            else:
+            if self.options.libusb:
                 self.requires("libusb/1.0.22@totemic/stable")
+            else:
+                self.requires("libudev1/237@totemic/stable")
 
     def _configure_cmake(self):
         cmake = CMake(self)
         cmake.definitions["HIDAPI_BUILD_SHARED"] = self.options.shared
         if self.settings.os == "Linux":
-            cmake.definitions["HIDAPI_BUILD_HIDRAW"] = self.options.hidraw
+            cmake.definitions["HIDAPI_BUILD_LIBUSB"] = self.options.libusb
         cmake.configure()
         return cmake
 
