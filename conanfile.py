@@ -47,7 +47,7 @@ class LibUSBConan(ConanFile):
             if self.options.libusb:
                 self.requires("libusb/1.0.22@totemic/stable")
             else:
-                self.requires("libudev1/229@totemic/stable")
+                self.requires("libudev1/237@totemic/stable")
 
     def _configure_cmake(self):
         cmake = CMake(self)
